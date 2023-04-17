@@ -2,35 +2,37 @@
 MACHINE LEARNING
 
 
-------------------- Making a prediction of GENRE type od song a user would probable listen or play base on past histories --------------------------
+--- Making a prediction/suggestion of GENRE type of song a user would probable listen or play base on past histories of songs played by a User -------
 
 
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier ## library
+from sklearn.tree import DecisionTreeClassifier 
 music_data = pd.read_csv('music.csv')
 music_data
 
-## split data by dropping the colunms 
+## split data by dropping the colunms, 
+## to get the independent variables (X)
 
 X = music_data.drop(columns=['genre'])
 X
 
-## Split to Output data ( is the prediction for the answer , training to make predictions for the model)
+## Split to Output data ( is the prediction for the answer , training to make predictions for the model (y))
 
 y = music_data['genre']
 y
 
-#  Build a Model; Using Decision Tree as the Machine algorithm ( from Sklearn library)
+## Build a Model; Using Decision Tree as the Machine algorithm ( from Sklearn library)
 
 from sklearn.tree import DecisionTreeClassifier
 
 ## create an object and set to an instance - the model
 model = DecisionTreeClassifier()
+
 ## train it to learn patterns in the data
 model.fit(X, y)
 ## now make prediction of a 21 year old male and 22 years female music they likes
 predictions = model.predict([[21, 1], [22, 0]])
-predictions ## and click enter on the variable
+predictions 
 
 # Measure accuracy of Model ( splitting the model into Training and Testing )
 
